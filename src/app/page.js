@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <div className="home-nav-container">
-        <div className="bigText bold3DText mt-150">
+        <div className="bold3DText text-center font-serif mt-150 text-4xl sm:text-4xl md:text-5xl">
           Where Every Bubble Tells a Story!
         </div>
       </div>
@@ -19,7 +19,7 @@ export default function Home() {
       </div>
 
       <div className="home-container m-8">
-        <div className="m-8">
+        <div className="m-2">
           <Carousel images={HomePageImages} />
         </div>
 

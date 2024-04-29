@@ -13,6 +13,19 @@ const Navbar1 = ({ toggleDarkMode, darkMode }) => {
     setNav(false);
     toggleDarkMode();
   };
+
+  const DarModeButton = () => {
+    return (
+      <div className="dark-mode-button rounded-full p-2 bg-gray-800/50 hover:bg-gray-800/70 transition-colors">
+        {darkMode ? (
+          <CiLight onClick={toggleDarkMode} className="text-gray-200" />
+        ) : (
+          <MdDarkMode onClick={toggleDarkMode} className="text-gray-200" />
+        )}
+      </div>
+    );
+  };
+
   const links = [
     {
       id: 1,
@@ -37,85 +50,57 @@ const Navbar1 = ({ toggleDarkMode, darkMode }) => {
   ];
 
   return (
-    <nav className=" relative w-full z-20 top-0 start-0">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <div className="flex items-center space-x-3 rtl:space-x-reverse">
+    <nav className="relative w-full z-20 top-0 start-0 ">
+      <div className="max-w-screen-xl flex items-center justify-between mx-auto px-4 py-6">
+        <div className="flex items-center space-x-3">
           <Image
             src="/btm-logo.svg"
             alt="Example Image"
-            className="h-20 w-20"
+            className="h-16 w-16"
             width={100}
             height={100}
           />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap bold3DText">
+          <span className="text-2xl font-semibold whitespace-nowrap text-white">
             Bubble Tea Magic
           </span>
         </div>
 
-        <ul className="hidden md:flex items-center">
-          <li className="mr-4">
-            <div className="dark-mode-button rounded-full p-2 bg-gray-800/50 hover:bg-gray-800/70 transition-colors">
-              {darkMode ? (
-                <CiLight onClick={toggleDarkMode} className="text-gray-200" />
-              ) : (
-                <MdDarkMode
-                  onClick={toggleDarkMode}
-                  className="text-gray-200"
-                />
-              )}
-            </div>
-          </li>
+        <ul className="hidden md:flex items-center space-x-4">
           {links.map(({ id, link, label }) => (
-            <li
-              key={id}
-              className="nav-links px-4 cursor-pointer capitalize font-medium bold3DText hover:scale-105 hover:text-blue duration-200 link-underline"
-            >
-              <Link href={link} className="text-xl">
+            <li key={id} className="px-4">
+              <Link
+                href={link}
+                className="text-lg text-white hover:text-gray-300 transition-colors"
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
+          <darModeButton />
+        </ul>
+
+        <div className="md:hidden">
+          <button
+            onClick={() => setNav(!nav)}
+            className="text-gray-300 focus:outline-none"
+          >
+            {nav ? <FaTimes size={24} /> : <FaBars size={24} />}
+          </button>
+        </div>
+      </div>
+
+      {/* on small screen size */}
+      {nav && (
+        <ul className="md:hidden absolute top-full left-0 w-full bg-gray-800 text-center">
+          {links.map(({ id, link, label }) => (
+            <li key={id} className="px-4 py-3 text-lg text-white">
+              <Link onClick={() => setNav(!nav)} href={link}>
                 {label}
               </Link>
             </li>
           ))}
         </ul>
-
-        <div
-          onClick={() => setNav(!nav)}
-          className="cursor-pointer pr-4 z-10 text-gray-500 md:hidden"
-        >
-          {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
-        </div>
-
-        {nav && (
-          <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-black to-gray-800 text-gray-500">
-            {links.map(({ id, link, label }) => (
-              <>
-                <li
-                  key={id}
-                  className="px-4 cursor-pointer capitalize py-6 text-4xl"
-                >
-                  <Link onClick={() => setNav(!nav)} href={link}>
-                    {label}
-                  </Link>
-                </li>
-              </>
-            ))}
-            <li>
-              <div className="dark-mode-button rounded-full p-2 bg-gray-800/50 hover:bg-gray-800/70 transition-colors">
-                {darkMode ? (
-                  <CiLight
-                    onClick={onDarkModeToggle}
-                    className="text-gray-200"
-                  />
-                ) : (
-                  <MdDarkMode
-                    onClick={onDarkModeToggle}
-                    className="text-gray-200"
-                  />
-                )}
-              </div>
-            </li>
-          </ul>
-        )}
-      </div>
+      )}
     </nav>
   );
 };
