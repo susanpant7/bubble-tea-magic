@@ -101,25 +101,12 @@ body {
 /* navbar */
 .small-screen-nav {
   position: fixed;
-  top: 90px; /* Adjust this value based on your design */
+  top: 90px;
   height: 100vh;
-  width: 100%; /* Ensure the ul takes the full width */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0; /* Remove any default padding */
-  margin: 0; /* Remove any default margin */
-  transition: transform 0.3s ease-in-out; /* Add transition for smooth movement */
-  transform: translateX(-100%); /* Initially position the ul outside the viewport */
-}
-
-.small-screen-nav.visible {
-  transform: translateX(0); /* Move the ul into the viewport */
-}
-
-.small-screen-nav li {
-  padding: 1rem; /* Add padding to li elements if needed */
+  width: 82%;
+  background: black;
+  text-align: center;
+  padding: 4rem;
 }
 
 /* navbar */
