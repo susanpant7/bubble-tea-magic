@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar1 from "./components/navbar/Navbar1";
 import { useState, useEffect } from "react";
+import Footer from "./components/footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({ children }) {
       >
         <Navbar1 toggleDarkMode={toggleDarkMode} darkMode={!lightMode} />
         {children}
+        <Footer />
       </body>
     </html>
   );

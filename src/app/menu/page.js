@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import CardGroup from "../components/cards/CardGroup";
 import MenuItems from "./MenuItems";
+import MenuCardGroup from "./MenuCardGroup";
 
 const Menu = () => {
   const [listOfMenuCards, setListOfMenuCards] = useState([]);
@@ -23,7 +23,7 @@ const Menu = () => {
           Please Select From The Following Flavors
         </h1>
       </div>
-      <CardGroup cards={listOfMenuCards} />
+      <MenuCardGroup cards={listOfMenuCards} />
     </div>
   );
 };

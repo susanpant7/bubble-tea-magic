@@ -1,7 +1,5 @@
 import React from "react";
 import { FaSquareFacebook, FaSquareInstagram } from "react-icons/fa6";
-import Card from "../components/cards/Card";
-import CardGroup from "../components/cards/CardGroup";
 import Head from "next/head";
 
 const Contact = () => {

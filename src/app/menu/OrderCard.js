@@ -1,6 +1,6 @@
 import React from "react";
 
-const Card = ({ imgPath, title, description, price }) => {
+const OrderCard = ({ imgPath, title, description, price }) => {
   return (
     <div>
       <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 box-with-shadow">
@@ -21,4 +21,4 @@ const Card = ({ imgPath, title, description, price }) => {
   );
 };
 
-export default Card;
+export default OrderCard;

@@ -1,14 +1,14 @@
 import React from "react";
-import Card from "./Card";
+import OrderCard from "./OrderCard";
 
-const CardGroup = ({ cards }) => {
+const MenuCardGroup = ({ cards }) => {
   return (
     <div>
       <div className="grid mb-8 rounded-lg shadow-sm md:mb-12 md:grid-cols-2">
         {cards.map((card, index) => (
           <div key={index}>
             <figure className="flex flex-col items-center justify-center p-8 text-center rounded-t-lg md:rounded-t-none md:rounded-ss-lg md:border-e">
-              <Card
+              <OrderCard
                 imgPath={card.imgPath}
                 title={card.title}
                 price={card.price}
@@ -22,4 +22,4 @@ const CardGroup = ({ cards }) => {
   );
 };
 
-export default CardGroup;
+export default MenuCardGroup;

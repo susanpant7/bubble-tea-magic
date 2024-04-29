@@ -16,7 +16,7 @@ const Carousel = ({ images }) => {
     clickable: true,
     renderBullet: function (index, className) {
       return (
-        '<span class="' + className + '">' + (className + index + 1) + "</span>"
+        '<span className="' + className + '">' + (className + index + 1) + "</span>"
       );
     },
   };
@@ -50,11 +50,9 @@ const Carousel = ({ images }) => {
       }}
     >
       {images.map((image, index) => (
-        <>
           <SwiperSlide key={index}>
             <img src={image.img} alt={image.alt} />
           </SwiperSlide>
-        </>
       ))}
     </Swiper>
   );
