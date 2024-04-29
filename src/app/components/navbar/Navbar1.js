@@ -90,8 +90,12 @@ const Navbar1 = ({ toggleDarkMode, darkMode }) => {
       </div>
 
       {/* on small screen size */}
-      {nav && (
-        <ul className="md:hidden absolute top-full left-0 w-full bg-gray-800 text-center">
+      {true && (
+        <ul
+          className={`absolute top-0 right-0 h-full w-full small-screen-nav shadow-lg transition duration-300 ease-in-out transform ${
+            nav ? "-translate-x-0 " : "translate-x-full"
+          }`}
+        >
           {links.map(({ id, link, label }) => (
             <li key={id} className="px-4 py-3 text-lg text-white">
               <Link onClick={() => setNav(!nav)} href={link}>
