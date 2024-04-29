@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -30,4 +30,208 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+} */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: white;
 }
+
+.logo-image-backgroundhom {
+  width: 100%;
+  height: 400px; /* Adjust the height as needed */
+  opacity: 0.5;
+}
+
+.home-nav-container {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 400px; /* Adjust height as needed */
+  background-image: url("/wallpaper.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+
+.bigText {
+  font-size: 3rem; /* Adjust font size as needed */
+  font-weight: bold; /* Makes text bolder */
+  color: black; /* Red color for big text */
+  text-align: center; /* Aligns text to center */
+  margin: 0; /* Removes default margin for cleaner spacing */
+  font-style: italic;
+}
+
+.smallText {
+  font-size: 1.5rem; /* Adjust font size as needed */
+  font-style: italic; /* Makes text italic */
+  color: black; /* Yellow color for small text */
+  text-align: center; /* Aligns text to center */
+  margin-top: 1rem; /* Adds space above the small text */
+}
+
+.h-70vh {
+  height: 70vh;
+}
+
+.dark-background {
+  background-image: linear-gradient(to right, #0f172a, #020617);
+}
+
+.light-background {
+  background-image: linear-gradient(to right, #0a810e, #cae1c4);
+}
+
+.bold3DText {
+  color: #fff; /* White text for good contrast on dark background */
+  text-shadow: 2px 2px 0px #000000,
+    /* Simulates a dark bottom shadow */ -2px -2px 0px #222222; /* Simulates a lighter top shadow */
+  font-weight: bold; /* Makes the text bold */
+}
+
+.mt-150 {
+  margin-top: 150px;
+}
+
+.mt-300 {
+  margin-top: 300px;
+}
+
+.relative {
+  position: relative;
+}
+
+.box-with-shadow {
+  box-shadow: 5px 10px 8px rgb(139 119 119 / 30%); /* Offset right 5px, down 10px, blur 8px, slightly transparent black */
+}
+
+/* homepage */
+
+.text-container {
+  position: relative;
+  display: flex;
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
+}
+
+.welcome-text {
+  color: #fff; /* White text for good contrast */
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
+  font-weight: bold; /* Bold text style */
+  text-align: center; /* Ensures text is centered within the element */
+  font-size: 2rem; /* Adjust font size as desired */
+  /* New styles for movement and font */
+  animation: move 3s ease-in-out infinite alternate;
+  font-family: "Dancing Script", cursive; /* Example cursive font */
+}
+
+@keyframes move {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(10px);
+  }
+}
+
+.description-container {
+  display: flex; /* Enables arranging boxes side-by-side */
+  flex-wrap: wrap; /* Wraps boxes to stack on small screens */
+  justify-content: space-between; /* Spaces boxes evenly on large screens */
+  margin: 50px auto; /* Adds margin for spacing */
+}
+
+.description-box {
+  background-color: #161313; /* Light background color */
+  padding: 20px; /* Adds padding for content */
+  border-radius: 5px; /* Rounded corners for a beautiful look */
+  width: 45%; /* Sets width for large screens (adjust as needed) */
+  text-align: center; /* Centers text within the box */
+}
+
+@media (max-width: 768px) {
+  /* Styles for screens less than 768px wide */
+  .description-container {
+    flex-direction: column; /* Stacks boxes vertically */
+    justify-content: center; /* Centers boxes vertically */
+  }
+  .description-box {
+    width: 100%; /* Fills full width on small screens */
+  }
+}
+
+/* homepage */
+
+/* contact page */
+.responsive-map {
+  overflow: hidden;
+  height: 0;
+  padding-bottom: 30%;
+  position: relative;
+}
+
+.responsive-map iframe {
+  border: 0;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+}
+/* contact page */
+
+/* card */
+/* Add this CSS to your stylesheet */
+.aspect-ratio-box {
+  position: relative;
+  padding-bottom: calc(100% / (4 / 3)); /* Adjust ratio as needed (here 4:3) */
+}
+
+.aspect-ratio-box img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+/* card */
+
+/* carousel */
+
+/* .swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+} */
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 400px;
+}
+
+.swiper-pagination-bullet {
+  background-color: white !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: yellow !important;
+  opacity: 1 !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  color: yellow; /* Change next arrow color */
+}
+
+/* carousel */
