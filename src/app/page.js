@@ -1,8 +1,12 @@
+"use client";
+import { useSession } from "next-auth/react";
 import CardWithTitleAndDescription from "./components/cards/CardWithTitleAndDescription";
 import Carousel from "./components/carousels/Carousel";
 import HomePageImages from "./components/carousels/HomePageImages";
 
 export default function Home() {
+  const { data: session, status } = useSession();
+
   return (
     <>
       <div className="home-nav-container">
@@ -14,7 +18,8 @@ export default function Home() {
 
       <div className="text-container">
         <h1 className="welcome-text animate__animated animate__bounceInDown">
-          Welcome to Bubble Tea Magic
+          Welcome to Bubble Tea Magic :
+          {status == "authenticated" && <span> {session.user.name}</span>}
         </h1>
       </div>
 
