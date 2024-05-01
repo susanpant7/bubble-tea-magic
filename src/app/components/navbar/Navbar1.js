@@ -1,53 +1,34 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { CiLight } from "react-icons/ci";
-import { MdDarkMode } from "react-icons/md";
+import { NavbarLinks } from "./Links";
+import { SiGoogle } from "react-icons/si";
 
-const Navbar1 = ({ toggleDarkMode, darkMode }) => {
+import { Login, Logout } from "./Auth";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+
+const Navbar1 = () => {
+  const router = useRouter();
+
+  const { data: session, status } = useSession();
+
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [nav, setNav] = useState(false);
 
-  const onDarkModeToggle = () => {
-    setNav(false);
-    toggleDarkMode();
+  const handleImageClick = (event) => {
+    setIsPopupOpen(!isPopupOpen);
   };
 
-  const DarModeButton = () => {
-    return (
-      <div className="dark-mode-button rounded-full p-2 bg-gray-800/50 hover:bg-gray-800/70 transition-colors">
-        {darkMode ? (
-          <CiLight onClick={toggleDarkMode} className="text-gray-200" />
-        ) : (
-          <MdDarkMode onClick={toggleDarkMode} className="text-gray-200" />
-        )}
-      </div>
-    );
+  const handleSignIn = async () => {
+    Login();
   };
 
-  const links = [
-    {
-      id: 1,
-      link: "/",
-      label: "Home",
-    },
-    {
-      id: 2,
-      link: "menu",
-      label: "Menu",
-    },
-    // {
-    //   id: 3,
-    //   link: "services",
-    //   label: "Services",
-    // },
-    {
-      id: 4,
-      link: "contact",
-      label: "Contact",
-    },
-  ];
+  const handleSignOut = async () => {
+    await Logout();
+  };
 
   return (
     <nav className="relative w-full z-20 top-0 start-0 ">
@@ -66,7 +47,7 @@ const Navbar1 = ({ toggleDarkMode, darkMode }) => {
         </div>
 
         <ul className="hidden md:flex items-center space-x-4">
-          {links.map(({ id, link, label }) => (
+          {NavbarLinks.map(({ id, link, label }) => (
             <li key={id} className="px-4">
               <Link
                 href={link}
@@ -76,7 +57,37 @@ const Navbar1 = ({ toggleDarkMode, darkMode }) => {
               </Link>
             </li>
           ))}
-          <darModeButton />
+
+          {status == "authenticated" && (
+            <li className="relative">
+              <img
+                className="user-image rounded-full border-2 border-white hover:border-blue-500 cursor-pointer w-10 h-10"
+                src={session.user.image}
+                alt="User Image"
+                onClick={handleImageClick}
+              />
+              {isPopupOpen && (
+                <div className="absolute right-0 top-full mt-2">
+                  <div className="bg-red-500 text-white border border-red-700 rounded shadow-md w-28">
+                    <button className="py-2 px-4" onClick={handleSignOut}>
+                      Sign Out
+                    </button>
+                  </div>
+                </div>
+              )}
+            </li>
+          )}
+
+          {status == "unauthenticated" && (
+            <li className="relative">
+              <div className="bg-blue-500 text-white border border-red-700 rounded shadow-md w-24 flex justify-center items-center">
+                <button className="flex items-center" onClick={handleSignIn}>
+                  <span>Sign In</span>
+                  <SiGoogle className="ml-1" />
+                </button>
+              </div>
+            </li>
+          )}
         </ul>
 
         <div className="md:hidden">
@@ -90,21 +101,53 @@ const Navbar1 = ({ toggleDarkMode, darkMode }) => {
       </div>
 
       {/* on small screen size */}
-      {true && (
-        <ul
-          className={`absolute top-0 right-0 h-full w-full small-screen-nav shadow-lg transition duration-300 ease-in-out transform ${
-            nav ? "-translate-x-0 " : "translate-x-full"
-          }`}
-        >
-          {links.map(({ id, link, label }) => (
-            <li key={id} className="px-4 py-3 text-lg text-white">
-              <Link onClick={() => setNav(!nav)} href={link}>
-                {label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul
+        className={`absolute top-0 right-0 h-full w-full small-screen-nav shadow-lg transition duration-300 ease-in-out transform ${
+          nav ? "-translate-x-0 " : "translate-x-full"
+        }`}
+      >
+        {NavbarLinks.map(({ id, link, label }) => (
+          <li key={id} className="px-4 py-3 text-lg text-white">
+            <Link onClick={() => setNav(!nav)} href={link}>
+              {label}
+            </Link>
+          </li>
+        ))}
+
+        {status === "authenticated" && (
+          <li className="relative flex items-center justify-center">
+            <div className="absolute -top-full mt-2 flex flex-col items-center">
+              <img
+                className="user-image rounded-full border-2 border-white hover:border-blue-500 cursor-pointer w-10 h-10"
+                src={session.user.image}
+                alt="User Image"
+                onClick={handleImageClick}
+              />
+              {isPopupOpen && (
+                <div className="bg-red-500 text-white border border-red-700 rounded shadow-md w-28 mt-2">
+                  <button className="py-2 px-4" onClick={handleSignOut}>
+                    Sign Out
+                  </button>
+                </div>
+              )}
+            </div>
+          </li>
+        )}
+
+        {status == "unauthenticated" && (
+          <li className="flex justify-center">
+            <button
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow-md transition duration-300 ease-in-out w-40 flex justify-center items-center"
+              onClick={handleSignIn}
+            >
+              Sign In With{" "}
+              <span>
+                <SiGoogle className="ml-1" />
+              </span>
+            </button>{" "}
+          </li>
+        )}
+      </ul>
     </nav>
   );
 };
