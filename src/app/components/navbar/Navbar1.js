@@ -32,7 +32,7 @@ const Navbar1 = () => {
 
   return (
     <nav className="relative w-full z-20 top-0 start-0 ">
-      <div className="max-w-screen-xl flex items-center justify-between mx-auto px-4 py-6">
+      <div className="max-w-screen-xl flex items-center justify-between mx-auto px-4">
         <div className="flex items-center space-x-3">
           <Image
             src="/btm-logo.svg"
