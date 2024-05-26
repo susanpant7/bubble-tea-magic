@@ -3,7 +3,7 @@ import { signIn, signOut } from "next-auth/react";
 const Login = async () => {
   const result = await signIn("google", { callbackUrl: "/" });
   console.log("signing with google", result);
-  if (result.error) {
+  if (result?.error) {
     console.error(result.error);
     return;
   }
