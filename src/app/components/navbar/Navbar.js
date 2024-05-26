@@ -32,7 +32,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    const scrollTrigger = 100; // Adjust this value
+    const scrollTrigger = 25;
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -64,7 +64,7 @@ const Navbar = () => {
           </span>
         </div>
 
-        <ul className="hidden md:flex items-center space-x-4">
+        <ul className="hidden large-screen md:flex items-center space-x-4">
           {NavbarLinks.map(({ id, link, label }) => (
             <li key={id} className="px-4">
               <Link

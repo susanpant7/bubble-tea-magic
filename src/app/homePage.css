@@ -37,6 +37,8 @@
   font-size: clamp(10px, 3vw, 30px);
   letter-spacing: 5px;
   text-transform: uppercase;
+  top: -10%;
+  position: relative;
 }
 
 .home-image-text-bg {

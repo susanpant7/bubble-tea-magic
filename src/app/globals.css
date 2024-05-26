@@ -109,11 +109,24 @@ body {
   padding: 4rem;
 }
 
+nav {
+  transition: background-color 0.8s ease-in-out, scale 0.8s ease-in-out;
+}
+
 nav.scrolled {
   background-color: firebrick;
   border-radius: 50px;
 }
 
+nav.scrolled img {
+  transition: height 0.8s ease-in-out;
+  height: 40px;
+}
+nav.scrolled img,
+nav.scrolled ul .large-screen,
+nav.scrolled span {
+  scale: 0.8;
+}
 /* navbar */
 
 /* homepage */
@@ -244,3 +257,7 @@ nav.scrolled {
 }
 
 /* carousel */
+
+.mt-50 {
+  margin-top: 50px;
+}

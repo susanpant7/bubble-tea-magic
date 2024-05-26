@@ -17,7 +17,7 @@ const Menu = () => {
     setListOfMenuCards(cardList);
   }, []);
   return (
-    <div>
+    <div className="mt-50">
       <div className="text-container">
         <h1 className="welcome-text animate__animated animate__bounceInDown">
           Please Select From The Following Flavors

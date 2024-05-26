@@ -19,8 +19,8 @@ export default function Home() {
             speed: -15,
             children: (
               <div className="absolute inset-0 flex items-center justify-center">
-                <div class="home-image-text">
-                  <span class="home-image-text-bg">
+                <div className="home-image-text">
+                  <span className="home-image-text-bg">
                     {status == "authenticated"
                       ? "Order Your Bubble"
                       : "Welcome To Bubble Tea Magic"}{" "}
@@ -49,8 +49,10 @@ export default function Home() {
             speed: -15,
             children: (
               <div className="absolute inset-0 flex items-center justify-center">
-                <div class="home-image-text">
-                  <span class="home-image-text-bg">Sip Smile and enjoy</span>
+                <div className="home-image-text">
+                  <span className="home-image-text-bg">
+                    Sip Smile and enjoy
+                  </span>
                 </div>
               </div>
             ),
@@ -73,8 +75,8 @@ export default function Home() {
             speed: -15,
             children: (
               <div className="absolute inset-0 flex items-center justify-center">
-                <div class="home-image-text">
-                  <span class="home-image-text-bg">
+                <div className="home-image-text">
+                  <span className="home-image-text-bg">
                     Build Your Dream Bubble Tea
                   </span>
                 </div>
