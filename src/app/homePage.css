@@ -28,13 +28,10 @@
   background-position: center;
   position: relative;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: scroll;
 }
 
 .home-image-text {
-  position: absolute;
-  top: 40%;
-  width: 100%;
   text-align: center;
   color: black;
   font-size: clamp(10px, 3vw, 30px);
@@ -60,4 +57,11 @@
   background-color: #343030;
   color: white;
 }
+
+.square-image {
+  object-fit: cover;
+  width: 300px;
+  height: 300px;
+}
+
 /* home section end */

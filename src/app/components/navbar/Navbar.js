@@ -10,13 +10,14 @@ import { Login, Logout } from "./Auth";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-const Navbar1 = () => {
+const Navbar = () => {
   const router = useRouter();
 
   const { data: session, status } = useSession();
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [nav, setNav] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const handleImageClick = (event) => {
     setIsPopupOpen(!isPopupOpen);
@@ -30,8 +31,25 @@ const Navbar1 = () => {
     await Logout();
   };
 
+  useEffect(() => {
+    const scrollTrigger = 100; // Adjust this value
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY >= scrollTrigger);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll); // Cleanup
+  }, []);
+
   return (
-    <nav className="relative w-full z-20 top-0 start-0 ">
+    <nav
+      className={`fixed w-full z-20 top-0 start-0 ${
+        isScrolled ? "scrolled" : ""
+      } `}
+    >
       <div className="max-w-screen-xl flex items-center justify-between mx-auto px-4">
         <div className="flex items-center space-x-3">
           <Image
@@ -59,7 +77,7 @@ const Navbar1 = () => {
           ))}
 
           {status == "authenticated" && (
-            <li className="relative">
+            <li className="">
               <img
                 className="user-image rounded-full border-2 border-white hover:border-blue-500 cursor-pointer w-10 h-10"
                 src={session.user.image}
@@ -152,4 +170,4 @@ const Navbar1 = () => {
   );
 };
 
-export default Navbar1;
+export default Navbar;

@@ -109,6 +109,11 @@ body {
   padding: 4rem;
 }
 
+nav.scrolled {
+  background-color: firebrick;
+  border-radius: 50px;
+}
+
 /* navbar */
 
 /* homepage */
