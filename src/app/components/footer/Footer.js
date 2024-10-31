@@ -23,7 +23,7 @@ const Footer = () => {
               </a>
 
               <a
-                href="https://www.instagram.com"
+                href="https://www.instagram.com/bubbleteamagic/"
                 target="_blank"
                 className="duration-300 ease-in-out transform hover:scale-110"
               >

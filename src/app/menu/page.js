@@ -1,20 +1,19 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import MenuItems from "./MenuItems";
+import { fetchMenuFromDrive } from "./MenuItems";
 import MenuCardGroup from "./MenuCardGroup";
+import Spinner from "../components/spinners/Spinner";
 
 const Menu = () => {
   const [listOfMenuCards, setListOfMenuCards] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    const cardList = MenuItems.map((menuItem) => ({
-      id: menuItem.id,
-      imgPath: menuItem.img,
-      title: menuItem.title,
-      description: menuItem.description,
-      price: menuItem.price,
-    }));
-    setListOfMenuCards(cardList);
+    async function fetchData() {
+      var menuCards = await fetchMenuFromDrive();
+      setListOfMenuCards(menuCards);
+      setIsLoading(false);
+    }
+    fetchData();
   }, []);
   return (
     <div className="mt-50">
@@ -23,7 +22,12 @@ const Menu = () => {
           Please Select From The Following Flavors
         </h1>
       </div>
-      <MenuCardGroup cards={listOfMenuCards} />
+      {isLoading && (
+        <div style={{ height: "100vh" }} className="full-screen">
+          <Spinner loadingText="Loading the menu items ..." />
+        </div>
+      )}
+      {!isLoading && <MenuCardGroup cards={listOfMenuCards} />}
     </div>
   );
 };
