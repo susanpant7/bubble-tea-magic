@@ -30,6 +30,19 @@ const AdminPage = () => {
   useEffect(() => {
     const fetchMenuItems = async () => {
       if (status === "authenticated") {
+        const userEmail = session.user.email;
+        const { data: userData, error: userError } = await supabase
+          .from("user")
+          .select("*")
+          .eq("username", userEmail)
+          .single(); 
+
+          if (userError || !userData) {
+            console.log("User not found or error occurred, redirecting...");
+            router.push("/"); // Redirect to home page
+            return;
+          }
+
         // Fetch the menu items from Supabase
         const { data, error } = await supabase
           .from("menu")
