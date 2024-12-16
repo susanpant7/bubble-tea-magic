@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { fetchMenuFromDrive } from "./MenuItems";
+import { fetchMenuFromDrive, fetchMenuItems } from "./MenuItems";
 import MenuCardGroup from "./MenuCardGroup";
 import Spinner from "../components/spinners/Spinner";
 
@@ -9,7 +9,8 @@ const Menu = () => {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     async function fetchData() {
-      var menuCards = await fetchMenuFromDrive();
+      // var menuCards = await fetchMenuFromDrive();
+      var menuCards = await fetchMenuItems();
       setListOfMenuCards(menuCards);
       setIsLoading(false);
     }

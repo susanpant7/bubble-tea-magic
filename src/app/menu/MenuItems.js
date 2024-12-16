@@ -1,4 +1,5 @@
 import mammoth from "mammoth";
+import { supabase } from "../lib/supabase";
 
 const bubbleTeaImages = [
   "/items/bt-1.jpeg",
@@ -30,7 +31,6 @@ export const fetchMenuFromDrive = async () => {
   const arrayBuffer = await response.arrayBuffer();
 
   const result = await mammoth.extractRawText({ arrayBuffer });
-
   try {
     let jsonString = result.value;
     var jsonObj = JSON.parse(jsonString);
@@ -45,6 +45,26 @@ export const fetchMenuFromDrive = async () => {
     console.error("Error parsing JSON: " + error.message);
     return [];
   }
+};
+
+export const fetchMenuItems = async () => {
+  const { data, error } = await supabase
+    .from("menu") 
+    .select("*");
+
+  if (error) {
+    console.error("Error fetching menu:", error);
+    return []
+  } else {
+    return data.map((menuItem) => ({
+      id: menuItem.id,
+      imgPath: menuItem.image ?? getRandomImage(),
+      title: menuItem.title,
+      description: menuItem.description,
+      price: menuItem.price,
+    }));
+  }
+  setLoading(false); // Stop loading after fetch
 };
 
 // const MenuItems = [
