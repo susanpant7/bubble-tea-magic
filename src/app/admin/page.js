@@ -11,6 +11,7 @@ const AdminPage = () => {
   const [menuItems, setMenuItems] = useState([]);
   const [isOpenAddEditModal, setIsOpenAddEditModal] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const reloadItems = async () => {
     if (status === "authenticated") {
@@ -43,14 +44,15 @@ const AdminPage = () => {
             return;
           }
 
-        // Fetch the menu items from Supabase
-        const { data, error } = await supabase
+          // Fetch the menu items from Supabase
+          const { data, error } = await supabase
           .from("menu")
           .select("*");
-
-        if (error) {
-          console.error("Error fetching menu:", error);
-        } else {
+          
+          if (error) {
+            console.error("Error fetching menu:", error);
+          } else {
+          setIsAdmin(true);
           setMenuItems(data); // Store menu items in state
         }
       } else {
@@ -88,6 +90,8 @@ const AdminPage = () => {
   };
 
   return (
+     <>
+     {isAdmin && 
     <div className="mt-50">
       <div className="container mx-auto p-4">
         <h1 className="text-3xl font-bold mb-4">Admin Menu Management</h1>
@@ -159,6 +163,8 @@ const AdminPage = () => {
         />
       )}
     </div>
+    }
+    </>
   );
 };
 
