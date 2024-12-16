@@ -91,6 +91,7 @@ const AdminPage = () => {
     <div className="mt-50">
       <div className="container mx-auto p-4">
         <h1 className="text-3xl font-bold mb-4">Admin Menu Management</h1>
+        <p className="text-xl text-yellow-200 font-bold mb-4">Hello {session?.user?.name}</p>
 
         <div className="mb-4">
           <button
